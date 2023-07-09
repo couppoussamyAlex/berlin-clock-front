@@ -1,0 +1,31 @@
+<div class="line">
+    <h1>Berlin Clock</h1>
+</div>
+<div class="line">
+    <div [ngClass]="{'yellow-lamp': isOn(INDEX_OF_LAMP_OF_SECOND)}" id="circle"></div>
+</div>
+
+<div class="line">
+    <div *ngFor="let i of arrayRange(INDEX_OF_LAMP_OF_FIRST_FIVE_HOURS, INDEX_OF_LAMP_OF_LAST_FIVE_HOURS)">
+        <div [ngClass]="{'red-lamp': isOn(i)}" class="large-rectangle"></div>
+    </div>
+</div>
+<div class="line">
+    <div *ngFor="let i of arrayRange(INDEX_OF_LAMP_OF_FIRST_ONE_HOUR, INDEX_OF_LAMP_OF_LAST_ONE_HOUR)">
+        <div [ngClass]="{'red-lamp': isOn(i)}" class="large-rectangle"></div>
+    </div>
+</div>
+<div class="line">
+    <div *ngFor="let i of arrayRange(INDEX_OF_LAMP_OF_FIRST_FIVE_MINUTES, INDEX_OF_LAMP_OF_LAST_FIVE_MINUTES)">
+        <div [ngClass]="{'yellow-lamp': !isRedLampOfMinutes(i) && isOn(i), 'red-lamp': isRedLampOfMinutes(i) && isOn(i)}" class="high-rectangle"></div>
+    </div>
+</div>
+<div class="line">
+    <div *ngFor="let i of arrayRange(INDEX_OF_LAMP_OF_FIRST_ONE_MINUTE, INDEX_OF_LAMP_OF_LAST_ONE_MINUTE)">
+        <div [ngClass]="{'yellow-lamp': isOn(i)}" class="large-rectangle"></div>
+    </div>
+</div>
+<div class="line time">
+    <input type="time" step="1" [(ngModel)]="time">
+    <button (click)="getBerlinClockTime()" [disabled]="!!!time">Berlin clock !</button>
+</div>
